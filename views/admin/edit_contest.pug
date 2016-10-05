@@ -1,0 +1,89 @@
+extends ./layout_nav
+
+block content
+  .row
+    .col-md-8.col-md-offset-2
+      h2 #{title}
+      hr
+      form(role='form')
+        .row
+          .col-md-6
+            .form-group
+              label(for="title") 比赛标题
+              input.form-control(name="title" type='text')
+            .form-group
+              label(for="group") 比赛权限
+              label.checkbox-inline
+                input(type="radio" name="group" value="all" checked) 
+                全部用户组
+              label.checkbox-inline
+                input(type="radio" name="group" value="limited") 
+                指定用户组
+            .form-group
+              label(for="appendix") 附加信息
+              textarea.form-control(name='appendix' rows='3')
+          .col-md-6
+            .form-group
+              label(for="problemlist") 题目清单
+              table.table.table-striped
+                thead
+                  tr
+                    th(width="40px;")
+                      a.btn.btn-success.btn-sm.add_btn
+                        添加
+                    th(width="40%") #
+                    th 标题
+                tbody#problemList
+                  tr#problemListTemplate
+                    td
+                      a.btn.btn-danger.btn-sm.del_btn
+                        删除
+                    td
+                      input.form-control.input-sm(type='text')
+                    td.problemTitle 测试01
+              
+        hr
+        p
+          a.pull-right.btn.btn-danger(href="#") 删除该比赛
+          span.pull-right &nbsp; &nbsp;
+          a.pull-right.btn.btn-primary( href="/admin/notice") 放弃编辑
+          button.btn.btn-success(type='submit') 提交
+
+  script.
+    var cnt=1;
+    // contestListInit
+    var cLstTemplate=$("#problemListTemplate");
+    cLstTemplate.hide();
+
+    // drag function
+    var fixHelper=function(e, ui) {
+      ui.children().each(function() {
+        $(this).width($(this).width());
+      });
+      return ui;
+    };
+
+    $(function() {
+      $("#problemList").sortable({
+        helper: fixHelper,
+        axis: "y"
+      });
+      //$("#problemList").disableSelection();
+    });
+    
+    // add problem
+    $(".add_btn").click(function() {
+      var nLstItem=cLstTemplate.clone();
+      nLstItem.attr("id", "");
+      nLstItem.attr("class", "problemItem");
+      nLstItem.attr("style", "");
+      nLstItem.find(".problemTitle").text("测试"+cnt);
+      cnt+=1;
+      $("#problemList").append(nLstItem);
+    });
+
+    // delete problem
+    $("body").on("click", ".del_btn", function() {
+      //alert($(this).parent().parent().attr("class"));
+      $(this).parent().parent().remove();
+    });

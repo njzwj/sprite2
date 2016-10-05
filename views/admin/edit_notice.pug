@@ -1,0 +1,20 @@
+extends ./layout_nav
+
+block content
+  .row
+    .col-md-8.col-md-offset-2
+      h2 #{title}
+      hr
+      form(role='form')
+        p
+          input.form-control(name='title' type='text' placeholder="请输入标题")
+        p
+          textarea.form-control(name='content' rows='3' placeholder='请输入内容')
+        hr
+        p
+          a.pull-right.btn.btn-danger(href="#") 删除此条公告
+          span.pull-right &nbsp; &nbsp;
+          a.pull-right.btn.btn-primary( href="/admin/notice") 放弃编辑
+          button.btn.btn-success(type='submit') 提交
+        
+          

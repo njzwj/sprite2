@@ -1,0 +1,40 @@
+extends ./layout_nav
+
+block content
+  .row
+    .col-md-8.col-md-offset-2
+      h2 管理站点-#{title}
+      ul.nav.nav-tabs
+        li.active(role="presentation")
+          a(href="/admin/notice") 公告
+        li(role="presentation")
+          a(href="/admin/contest") 比赛
+        li(role="presentation")
+          a(href="/admin/problem") 题目
+      br
+      p
+        a.btn.btn-success(href="/admin/edit/notice") 新建公告
+      .panel.panel-default
+        .panel-body 共计#条公告
+      .panel.panel-default
+        table.table.table-hover.tabel-striped
+          thead
+            tr
+              th #
+              th 标题
+              th 创建时间
+              th 最后修改
+              th 操作
+          tbody
+            tr
+              td 1
+              td 
+                a(href="") 测试01
+              td 2016/10/5 20:00
+              td 2016/10/5 22:00
+              td 
+                a(href="/admin/edit/notice") 修改
+                span &nbsp;&nbsp;
+                a(href="") 删除
+  
+          

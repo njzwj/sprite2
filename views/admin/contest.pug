@@ -1,0 +1,63 @@
+extends ./layout_nav
+
+block content
+  .row
+    .col-md-8.col-md-offset-2
+      h2 管理站点-#{title}
+      ul.nav.nav-tabs
+        li(role="presentation")
+          a(href="/admin/notice") 公告
+        li.active(role="presentation")
+          a(href="/admin/contest") 比赛
+        li(role="presentation")
+          a(href="/admin/problem") 题目
+      br
+      p
+        a.btn.btn-success(href="/admin/edit/contest") 新建比赛
+      .panel.panel-default
+        .panel-body 共计#场比赛
+      .panel.panel-default
+        table.table.table-hover.table-striped
+          thead
+            tr
+              th #
+              th 比赛
+              th 开始时间
+              th 结束时间
+              th 状态
+              th 操作
+          tbody
+            tr
+              td 3
+              td 
+                a(href="") NWPU-Weekly-03
+              td 2016/10/5 20:00
+              td 2016/10/5 22:00
+              td 未开始
+              td 
+                a(href="/admin/edit/contest") 修改
+                span &nbsp;&nbsp;
+                a(href="") 删除
+            tr
+              td 2
+              td 
+                a(href="") NWPU-Weekly-02
+              td 2016/10/3 20:00
+              td 2016/10/3 22:00
+              td 已结束
+              td 
+                a(href="/admin/edit/contest") 修改
+                span &nbsp;&nbsp;
+                a(href="") 删除
+            tr
+              td 1
+              td 
+                a(href="") NWPU-Weekly-01
+              td 2016/10/1 20:00
+              td 2016/10/1 22:00
+              td 已结束
+              td 
+                a(href="/admin/edit/contest") 修改
+                span &nbsp;&nbsp;
+                a(href="") 删除
+          
