@@ -1,0 +1,68 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        title contentlist 
+        link(href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css",rel="stylesheet")
+     body
+        div(class = "container")
+            div(id = "row clearfix")
+                div(id = "col-md-12 column")
+                    nav(id = "navbar navbar-default navbar-inverse navbar-fixed-top",role = "navigation") 
+                        div(class = "navbar-header")
+                            button(type="button",class="navbar-toggle",data-toggle="collapse",data-target="#bs-example-navbar-collapse-1")
+                                span(class="sr-only") Toggle navigation
+                                span(class="icon-bar")
+                                span(class="icon-bar")
+                                span(class="icon-bar")
+                            a(class="navbar-brand",href="#") Home
+                        div(class="collapse navbar-collapse",id="bs-example-navbar-collapse-1")
+                            ul(class="nav navbar-nav")
+                                li(class="active")
+                                    a(href="#") Problem
+                                li(class="active")
+                                    a(href="#") Status
+                                li(class="active")
+                                    a(href="#") Contest
+                            form(class="navbar-form navbar-left",role="search")
+                                div(class="form-group")
+                                    input(type="text",class="form-control")
+                                button(type="submit",class="btn btn-default") Submit
+                            ul(class="nav navbar-nav navbar-right")
+                                li(class="active")
+                                    //-这个NAME还需要进一步设计
+                                    a(href="#") Name 
+                                li(class="active")
+                                    //-这个Update更新到个人主页
+                                    a(href="#") Update
+                    div(class="jumbotron well")
+                        p 
+                            //-此处还需要改进
+                            h3 比赛名
+                        p 
+                            small 这是一个文本测试，欢迎群巨前来虐场
+                    ul(class="nav nav-tabs")
+                        li(class="active")
+                            a(href="#") Problem
+                        li(class="disabled")
+                            a(href="#") Rank
+                        li(class="disabled")
+                            a(href="#") Process
+                        li(class="disabled")
+                            a(href="disabled") Discuss/Ask
+                    table(class="table")
+                        thead
+                            tr
+                                th ProblemID
+                                th Name
+                                th Result
+                                th Status
+                        tbody
+                            //-这个地方的具体颜色还需要调整
+                            - for(var i=0;i<7;i++)
+                                tr(class="info")
+                                    td 00#{i}
+                                    td 
+                                        a(href="#") problem00#{i}
+                                    td Accepted
+                                    td 22
