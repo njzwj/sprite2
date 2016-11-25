@@ -1,0 +1,14 @@
+extends ./layout_nonav
+
+block content
+  .container-sm
+    h3 NOJ
+    .panel.panel-default
+      .panel-heading 管理员登录
+      .panel-body
+        form(role="form" action="admin/portal" method="post")
+          .form-group
+            input.form-control#userid(type="text" name="userid" placeholder="用户名")
+          .form-group
+            input.form-control#password(type="password" name="password" placeholder="密码")
+          button.btn.btn-success.btn-block(type="submit" value="submit") 登录
