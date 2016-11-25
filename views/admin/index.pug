@@ -17,11 +17,11 @@ block content
     .list-group
       a.list-group-item(href="/") 站点首页
   .col-xs-9#sub-pages
-    h3#page-title
+    h3 #{title}
     - if (status == 'news') {
       div#news
         p
-          a.btn.btn-success(href="/admin/edit/news?mode=create") 新建公告
+          a.btn.btn-success(href="/admin/create/news") 新建公告
         .panel.panel-default
           table.table.table-striped
             thead
@@ -39,63 +39,57 @@ block content
                   td #{val.create_time_string}
                   td -
                   td 
-                    a(href="/admin/edit/news?mode=update&_id=" + val._id) 修改
+                    a(href="/admin/edit/news?id=" + val._id) 修改
                     span &nbsp;&nbsp;
-                    a(href="" onclick="$.post('/admin/newsdb', { mode: 'delete', _id: '" + val._id + "' });") 删除
+                    a(href="" onclick="$.post('/admin/newsdb', { mode: 'delete', id: '" + val._id + "' });") 删除
     - }
     - if (status == 'problem') {
       div#problem
         p
-          a.btn.btn-success(href="/admin/edit/problem") 新建题目
-        .panel.panel-default
-          .panel-body 共计#个题目
+          a.btn.btn-success(href="/admin/create/problem") 新建题目
         .panel.panel-default
           table.table.table-striped
             thead
               tr
-                th #
                 th 标题
                 th 状态
                 th 操作
             tbody
-              tr
-                td 1
-                td
-                  a(href="") A+B
-                td 243/244
-                td
-                  a(href="/admin/edit/problem") 修改
-                  span &nbsp;&nbsp;
-                  a(href="") 删除
+              - for (x in page.results)
+                tr
+                  td
+                    a(href="#") x.title
+                  td #{x.correct_submit}/#{x.submit_total}
+                  td
+                    a(href="/admin/edit/problem?id=" + x._id) 修改
+                    span &nbsp;&nbsp;
+                    a(href="") 删除
     - }
     - if (status == 'contest') {
       div#contest
         p
-          a.btn.btn-success(href="/admin/edit/contest") 新建比赛
-        .panel.panel-default
-          .panel-body 共计#场比赛
+          a.btn.btn-success(href="/admin/create/contest") 新建比赛
         .panel.panel-default
           table.table.table-striped
             thead
               tr
-                th #
                 th 比赛
                 th 开始时间
                 th 结束时间
                 th 状态
                 th 操作
             tbody
-              tr
-                td 3
-                td 
-                  a(href="") NWPU-Weekly-03
-                td 2016/10/5 20:00
-                td 2016/10/5 22:00
-                td 未开始
-                td 
-                  a(href="/admin/edit/contest") 修改
-                  span &nbsp;&nbsp;
-                  a(href="") 删除
+              - for (x in page.results)
+                tr
+                  td 
+                    a(href="") #{x.title}
+                  td #{x.begin_time}
+                  td #{x.end_time}
+                  td 未开始
+                  td 
+                    a(href="/admin/edit/contest?id=" + x._id) 修改
+                    span &nbsp;&nbsp;
+                    a(href="") 删除
     - }
     nav
       ul.pagination
