@@ -1,4 +1,4 @@
-extends ./layout_nav
+extends ./layout_admin
 
 block content
   .row
@@ -11,14 +11,15 @@ block content
             .form-group
               label(for="title") 比赛标题
               input.form-control(name="title" type='text')
+
             .form-group
               label(for="group") 比赛权限
               label.checkbox-inline
                 input(type="radio" name="group" value="all" checked) 
-                全部用户组
+                | 全部用户组
               label.checkbox-inline
                 input(type="radio" name="group" value="limited") 
-                指定用户组
+                | 指定用户组
             .form-group
               label(for="appendix") 附加信息
               textarea.form-control(name='appendix' rows='3')
@@ -29,15 +30,13 @@ block content
                 thead
                   tr
                     th(width="40px;")
-                      a.btn.btn-success.btn-sm.add_btn
-                        添加
+                      a.btn.btn-success.btn-sm.add_btn 添加
                     th(width="40%") #
                     th 标题
                 tbody#problemList
                   tr#problemListTemplate
                     td
-                      a.btn.btn-danger.btn-sm.del_btn
-                        删除
+                      a.btn.btn-danger.btn-sm.del_btn 删除
                     td
                       input.form-control.input-sm(type='text')
                     td.problemTitle 测试01
@@ -50,6 +49,27 @@ block content
           button.btn.btn-success(type='submit') 提交
 
   script.
+    // ========== DB INIT ==========
+    /*
+    var nojdb = require('./nojdb');
+
+    function showerr(err, object) {
+      if (err == null) {
+        console.log(object);
+      } else {
+        console.log(err);
+      }
+    }
+
+    nojdb.admin.create({
+      id: 1234,
+      username: 'p1',
+      password: 'pwd',
+      type: 1
+    }, showerr);
+    */
+
+    // === INTERACTIVE EDIT LIST ===
     var cnt=1;
     // contestListInit
     var cLstTemplate=$("#problemListTemplate");

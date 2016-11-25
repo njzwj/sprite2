@@ -1,0 +1,121 @@
+extends ./layout_admin
+
+block content
+  .col-xs-3
+    h4
+      small 
+        span.glyphicon.glyphicon-dashboard
+        |  Dashboard
+    .list-group
+      a.list-group-item(href="/admin/news") 公告管理
+      a.list-group-item(href="/admin/problem") 题目管理
+      a.list-group-item(href="/admin/contest") 比赛管理
+    h4
+      small
+        span.glyphicon.glyphicon-paperclip
+        |  Links
+    .list-group
+      a.list-group-item(href="/") 站点首页
+  .col-xs-9#sub-pages
+    h3#page-title
+    - if (status == 'news') {
+      div#news
+        p
+          a.btn.btn-success(href="/admin/edit/news?mode=create") 新建公告
+        .panel.panel-default
+          table.table.table-striped
+            thead
+              tr
+                th 标题
+                th 创建时间
+                th 最后修改
+                th 操作
+            tbody
+              - for (x in page.results)
+                tr
+                  - var val = page.results[x]
+                  td 
+                    a(href="") #{val.title}
+                  td #{val.create_time_string}
+                  td -
+                  td 
+                    a(href="/admin/edit/news?mode=update&_id=" + val._id) 修改
+                    span &nbsp;&nbsp;
+                    a(href="" onclick="$.post('/admin/newsdb', { mode: 'delete', _id: '" + val._id + "' });") 删除
+    - }
+    - if (status == 'problem') {
+      div#problem
+        p
+          a.btn.btn-success(href="/admin/edit/problem") 新建题目
+        .panel.panel-default
+          .panel-body 共计#个题目
+        .panel.panel-default
+          table.table.table-striped
+            thead
+              tr
+                th #
+                th 标题
+                th 状态
+                th 操作
+            tbody
+              tr
+                td 1
+                td
+                  a(href="") A+B
+                td 243/244
+                td
+                  a(href="/admin/edit/problem") 修改
+                  span &nbsp;&nbsp;
+                  a(href="") 删除
+    - }
+    - if (status == 'contest') {
+      div#contest
+        p
+          a.btn.btn-success(href="/admin/edit/contest") 新建比赛
+        .panel.panel-default
+          .panel-body 共计#场比赛
+        .panel.panel-default
+          table.table.table-striped
+            thead
+              tr
+                th #
+                th 比赛
+                th 开始时间
+                th 结束时间
+                th 状态
+                th 操作
+            tbody
+              tr
+                td 3
+                td 
+                  a(href="") NWPU-Weekly-03
+                td 2016/10/5 20:00
+                td 2016/10/5 22:00
+                td 未开始
+                td 
+                  a(href="/admin/edit/contest") 修改
+                  span &nbsp;&nbsp;
+                  a(href="") 删除
+    - }
+    nav
+      ul.pagination
+        - if (page.pageNumber > 1) {
+          li
+            a(href="/admin/"+status+"?page="+(page.pageNumber-1)) &laquo;
+        - }
+        - for (var i = page.pageNumber - 4; i < page.pageNumber; i++) {
+        -   if (i < 1) continue;
+            li
+              a(href="/admin/"+status+"?page="+i) #{i}
+        - }
+        li.active
+          a(href="#") #{page.pageNumber}
+        - for (var i = page.pageNumber + 1; i <= page.pageNumber + 4; i++) {
+        -   if (i > page.pageCount) break;
+            li
+              a(href="/admin/"+status+"?page="+i) #{i}
+        - }
+        - if (page.pageNumber < page.pageCount) {
+          li
+            a(href="/admin/"+status+"?page="+(page.pageNumber+1)) &raquo;
+        - }
