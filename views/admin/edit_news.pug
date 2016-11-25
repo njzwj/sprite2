@@ -15,7 +15,8 @@ block content
           textarea.form-control(name='content' rows='3' placeholder="请输入内容") #{model.content}
         hr
         p
-          a.pull-right.btn.btn-danger(href="/admin/news" onclick="$.post('/admin/newsdb', { mode: 'delete', _id: '" + _id + "' });") 删除此条公告
+          - if (mode == "update")
+            a.pull-right.btn.btn-danger(href="/admin/news" onclick="$.post('/admin/newsdb', { mode: 'delete', id: '" + _id + "' });") 删除此条公告
           span.pull-right &nbsp; &nbsp;
           a.pull-right.btn.btn-primary( href="/admin/news") 放弃编辑
           button.btn.btn-success() 提交
